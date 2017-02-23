@@ -553,7 +553,7 @@ img.logo {
 	padding:10px;
 }
 
-.info b {
+.info b::first-letter {
 	text-transform: capitalize;
 }
 
