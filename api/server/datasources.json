@@ -1,0 +1,11 @@
+{
+  "db": {
+    "host": "slapcountdown-database",
+    "port": 27017,
+    "database": "slapcountdown",
+    "username": "user",
+    "password": "password",
+    "name": "db",
+    "connector": "mongodb"
+  }
+}
