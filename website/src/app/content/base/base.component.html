@@ -1,0 +1,134 @@
+<div class="sk-cube-container full-screen" *ngIf="loading">
+	<div class="sk-cube-grid large">
+		<div class="sk-cube sk-cube1"></div>
+		<div class="sk-cube sk-cube2"></div>
+		<div class="sk-cube sk-cube3"></div>
+		<div class="sk-cube sk-cube4"></div>
+		<div class="sk-cube sk-cube5"></div>
+		<div class="sk-cube sk-cube6"></div>
+		<div class="sk-cube sk-cube7"></div>
+		<div class="sk-cube sk-cube8"></div>
+		<div class="sk-cube sk-cube9"></div>
+	</div>
+</div>
+
+<div id="preloader_container" *ngIf="!loading">
+	<section class="hero_fullscreen newsletter timer background_solid" *ngIf="entry">
+
+
+		<!-- Main content -->
+	  	<div class="container align-center" id="main_content">
+			<div class="content_container row centerized">
+				<div class="col-md-12 col-xs-12 logo-center">
+					<img src="/assets/images/slap-wit.png" class="logo">
+				</div>
+
+				<div class="row" *ngIf="entry.new">
+					<h6 class="col-xs-12">Your Slap-Countdown has been created, copy the following url and share it!</h6>
+					<div class="col-xs-10 col-md-6 well">{{ entry.url }}</div>
+				</div>
+
+				<!-- Timer (put class="timer" in Homepage section if you want timer to be shown)-->
+				<div id="countdown" class="countdown">
+					<div class="countdown_part first">
+						<h1 class="days">{{ countdown.days }}</h1>
+						<p class="timeRefDays">days</p>
+					</div>
+					<div class="countdown_part">
+						<h1 class="hours">{{ countdown.hours }}</h1>
+						<p class="timeRefHours">hours</p>
+					</div>
+					<div class="countdown_part">
+						<h1 class="minutes">{{ countdown.minutes }}</h1>
+						<p class="timeRefMinutes">minutes</p>
+					</div>
+					<div class="countdown_part last">
+						<h1 class="seconds">{{ countdown.seconds }}</h1>
+						<p class="timeRefSeconds">seconds</p>
+					</div>
+				</div>
+				<!-- //Timer -->
+
+
+				<h6 class="info">You will be slapped by <b>{{ entry.sender }}</b> on <b>{{ entry.expireDate | amDateFormat:'LL' }}</b> because;<br class="hidden-xs"> <b>"{{ entry.description }}"</b></h6>
+
+			</div>
+		</div>
+		<!-- //Main content -->
+
+	</section>
+
+	<section id="more_info">
+		<div class="container">
+			<div class="row">
+				<div class="col-xs-12 col-sm-5 col-md-5 col-lg-5">
+					<div class="col-md-12 col-xs-12">
+						<img src="/assets/images/slap-wit.png" class="logo">
+					</div>
+
+					<h3>Slap Countdown</h3>
+					<p>Slap Countdown is a simple site where you can create a slap-countdown like the slap bet from "How I met your mother".</p>
+					<p>On the right you can create a simple countdown and a link will be provided which you can share to your slap buddy.</p>
+				</div>
+
+				<!-- Contact Form Section -->
+				<div class="col-xs-12 col-sm-5 col-md-5 col-lg-5 col-sm-offset-2 col-md-offset-2 col-lg-offset-2">
+					<h3>Create Countdown</h3>
+					<p>Below you can create a slap countdown.</p>
+
+					<div *ngIf="countdownForm">
+						<form [formGroup]="countdownForm" (submit)="createEntry()" id="contact-form" method="post">
+							<div class="contact_form">
+								<div class="row">
+									<div class="input-field col-md-6 col-xs-12">
+						  				<label for="sender">Your Name</label>
+						  				<input id="sender" formControlName="sender" type="text">
+						  				<small class="col-xs-12" *ngIf="!countdownForm.controls.sender.valid && !countdownForm.controls.sender.pristine && countdownForm.controls.sender.hasError('required')">
+											Sender is required.
+										</small>
+										<small class="col-xs-12" *ngIf="!countdownForm.controls.sender.valid && !countdownForm.controls.sender.pristine && countdownForm.controls.sender.hasError('maxLength')">
+											Sender name is too long (max 20 characters).
+										</small>
+						  			</div>
+						  			<div class="input-field col-md-6 col-xs-12">
+						  				<label for="receiver">Receiver</label>
+						  				<input id="receiver" formControlName="receiver" type="text">
+						  				<small class="col-xs-12" *ngIf="!countdownForm.controls.receiver.valid && !countdownForm.controls.receiver.pristine && countdownForm.controls.receiver.hasError('required')">
+											Receiver is required.
+										</small>
+										<small class="col-xs-12" *ngIf="!countdownForm.controls.receiver.valid && !countdownForm.controls.receiver.pristine && countdownForm.controls.receiver.hasError('maxLength')">
+											Receiver name is too long (max 20 characters).
+										</small>
+						  			</div>
+					  			</div>
+					  			<div class="input-field">
+						  			<label>Slap-date &amp; time</label>
+						  			<p-calendar formControlName="expireDateTime" [showTime]="true" hourFormat="24"></p-calendar>
+						  			<small class="col-xs-12" *ngIf="!countdownForm.controls.expireDateTime.valid && !countdownForm.controls.expireDateTime.pristine && countdownForm.controls.expireDateTime.hasError('required')">
+										Date &amp; time are required.
+									</small>
+						  		</div>
+					  			<div class="input-field">
+						  			<label>Reason</label>
+						  			<textarea class="materialize-textarea" formControlName="description"></textarea>
+						  			<small class="col-xs-12" *ngIf="!countdownForm.controls.description.valid && !countdownForm.controls.description.pristine && countdownForm.controls.description.hasError('required')">
+										Reason is required.
+									</small>
+									<small class="col-xs-12" *ngIf="!countdownForm.controls.description.valid && !countdownForm.controls.description.pristine && countdownForm.controls.description.hasError('maxLength')">
+										Reason name is too long (max 255 characters).
+									</small>
+						  		</div>
+				  			</div>
+				  			<button class="btn waves-effect waves-light" [disabled]="!countdownForm.valid" [class.disabled]="!countdownForm.valid" type="submit" name="action">Create</button>
+						</form>
+					</div>
+
+					<div id="message"><div id="alert"></div></div><!-- Message container -->
+				</div>
+				<!-- //Contact Form Section -->
+
+
+			</div>
+		</div>
+	</section>
+</div>
