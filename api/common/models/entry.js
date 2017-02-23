@@ -1,4 +1,5 @@
 'use strict';
+var slugify = require('slugify');
 
 module.exports = function(Entry) {
   Entry.observe('before save', (ctx, next) => {
@@ -9,7 +10,7 @@ module.exports = function(Entry) {
       let data = ctx.instance;
 
 
-      let slug = data.receiver;
+      let slug = slugify(data.receiver);
       checkSlugAvailabilty(slug)
       .then(slug => {
         ctx.instance.slug = slug;
