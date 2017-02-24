@@ -1,7 +1,7 @@
 version: '2'
 
 services:
-  slapcountdown-frontend:
+  frontend:
     image: superbuddy/ng-cli-nginx
     env_file: 
       - .env
@@ -23,7 +23,7 @@ services:
       - slapcountdown
       - proxy-tier
 
-  slapcountdown-backend:
+  backend:
     image: superbuddy/loopback-sdk-builder
     env_file: 
       - .env
@@ -44,7 +44,7 @@ services:
       - slapcountdown
       - proxy-tier
       
-  slapcountdown-database:
+  database:
     image: tutum/mongodb:3.2
     ports:
       - "27017:27017"
