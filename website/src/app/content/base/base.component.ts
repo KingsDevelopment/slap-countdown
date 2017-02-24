@@ -43,7 +43,7 @@ export class BaseComponent implements OnInit {
 				this._entry
 				.findOne({
 					where: {
-						slug: params.slug.toLowerCase()
+						slug: params['slug'].toLowerCase()
 					}
 				})
 				.subscribe((result:any) => {
@@ -130,8 +130,6 @@ export class BaseComponent implements OnInit {
 				this.countdownForm.reset();
 				this.countdownFormSubmitted = false;
 				window.scrollTo(0,0);
-
-				this._router.navigate(['/' + result.slug]);
 
 				this._notification.success("Success!", "A slap countdown has been created, have fun!");
 			}, err => {
