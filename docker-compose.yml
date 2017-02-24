@@ -44,7 +44,7 @@ services:
       - slapcountdown
       - proxy-tier
       
-  database:
+  mongodb:
     image: tutum/mongodb:3.2
     ports:
       - "27017:27017"

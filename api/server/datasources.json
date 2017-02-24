@@ -1,6 +1,6 @@
 {
   "db": {
-    "host": "slapcountdown-database",
+    "host": "mongodb",
     "port": 27017,
     "database": "slapcountdown",
     "username": "user",
