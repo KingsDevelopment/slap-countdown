@@ -4,9 +4,7 @@ MAINTAINER Jurien Hamaker <jurien@kings-dev.io>
 ENV APP_DEBUG false
 ENV AOT true
 
-COPY . /project
-
-RUN ls
+COPY ./website /project
 
 RUN mv /project/sdk /project/src/app/sdk
 
