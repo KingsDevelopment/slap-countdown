@@ -5,7 +5,7 @@ ENV APP_DEBUG false
 ENV AOT true
 
 COPY . /project
-COPY ./sdk /project/src/app/sdk
+RUN mv /project/sdk /project/src/app/sdk
 
 RUN npm install
 #RUN npm test
