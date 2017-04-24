@@ -3,7 +3,7 @@ MAINTAINER Jurien Hamaker <jurien@kings-dev.io>
 
 WORKDIR /project
 
-ADD package.json /project/package.json
+ADD ./website/package.json /project/package.json
 RUN npm config set registry http://registry.npmjs.org
 RUN npm install
 RUN mv /project/node_modules /node_modules
@@ -11,7 +11,7 @@ RUN mv /project/node_modules /node_modules
 ENV APP_DEBUG false
 ENV AOT true
 
-ADD . /project
+ADD ./website /project
 
 RUN mv /project/sdk /project/src/app/sdk
 
